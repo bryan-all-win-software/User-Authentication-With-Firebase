@@ -8,20 +8,20 @@
 import UIKit
 import FirebaseAuth
 
-enum ProviderType: String{
+internal enum ProviderType: String{
     case basic
 }
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
 
-    @IBOutlet var emailLabel: UILabel!
-    @IBOutlet var providerLabel: UILabel!
-    @IBOutlet var logOutButton: UIButton!
+    @IBOutlet private var emailLabel: UILabel!
+    @IBOutlet private var providerLabel: UILabel!
+    @IBOutlet private var logOutButton: UIButton!
     
     private let email: String
     private let provider: ProviderType
     
-    
+    //MARK: Contructor
     init(email: String, provider: ProviderType) {
         self.email = email
         self.provider = provider
@@ -32,30 +32,30 @@ class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    internal override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "Main Page"
-        
         emailLabel.text = self.email
         providerLabel.text = provider.rawValue
         
     }
     
-    @IBAction func logOutActionButton(_ sender: Any) {
-        
+    @IBAction private func logOutActionButton(_ sender: Any) {
         switch provider {
         case .basic:
             do {
                 try Auth.auth().signOut()
                 navigationController?.popViewController(animated: true)
-                print(provider.rawValue)
             }catch{
-                let alert = UIAlertController(title: "Error!", message: "Log out error!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default))
-                                              self.present(alert, animated: true, completion: nil)
+                self.alertShow()
             }
         }
-        
+    }
+    
+    //MARK: Error function to use more later
+    private func alertShow() {
+        let alert = UIAlertController(title: "Error!", message: "Log out error!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
 }
