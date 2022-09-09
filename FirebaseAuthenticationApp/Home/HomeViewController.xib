@@ -66,7 +66,7 @@
                 <constraint firstItem="TFo-bd-KOh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="RHa-OW-J5w"/>
                 <constraint firstItem="TFo-bd-KOh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="eBK-YH-M5K"/>
             </constraints>
-            <point key="canvasLocation" x="-139" y="-32"/>
+            <point key="canvasLocation" x="114" y="198"/>
         </view>
     </objects>
     <resources>
